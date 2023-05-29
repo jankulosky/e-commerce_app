@@ -1,0 +1,79 @@
+﻿<div class="container mt-4" *ngIf="productParams">
+    <div class="d-flex justify-content-start">
+        <div class="d-flex mx-2">
+            <label class="col-form-label">Category:</label>
+            <select id="categorySelect"
+                    [(ngModel)]="selectedTypeOption"
+                    name="category"
+                    class="form-select ms-1"
+                    (change)="onFilterSelectionChange()"
+                    style="width: 180px">
+                <option value="allProducts">- All Products -</option>
+                <option value="t-shirt">T-Shirts</option>
+                <option value="poster">Posters</option>
+                <option value="mug">Mugs</option>
+            </select>
+        </div>
+
+        <div class="d-flex mx-2">
+            <label class="col-form-label">Sort By:</label>
+            <select id="sortSelect"
+                    [(ngModel)]="selectedSortOption"
+                    name="sortBy"
+                    class="form-select ms-1"
+                    (change)="onSortSelectionChange()"
+                    style="width: 180px">
+                <option value="lowestPriceFirst">Price (low > high)</option>
+                <option value="highestPriceFirst">Price (high > low)</option>
+                <option value="nameAZ">Name (A-Z)</option>
+                <option value="nameZA">Name (Z-A)</option>
+            </select>
+        </div>
+
+        <div class="d-flex mx-2">
+            <label class="col-form-label">Items per page:</label>
+            <select id="pageSizeSelect"
+                    [(ngModel)]="pageSizeOptions"
+                    name="pageSize"
+                    class="form-select ms-1"
+                    (change)="pageChanged($event)"
+                    style="width: 180px">
+                <option value="6">6</option>
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="48">48</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div *ngFor="let p of store.products" class="col-md-4">
+        <div class="border bg-light rounded p-1 mt-2">
+            <a [routerLink]="['product/', p.id]">
+                <img src="/img/{{ p.artId }}.jpg" class="img-fluid product-image" alt="{{ p.artist }}" />
+            </a>
+            <h5><a [routerLink]="['product/', p.id]">{{ p.category }} - {{ p.size }}</a></h5>
+            <ul class="products-props">
+                <li><strong>Title:</strong> {{ p.title }}</li>
+                <li><strong>Artist:</strong> {{ p.artist }}</li>
+                <li><strong>Price:</strong> {{ p.price | currency }}</li>
+            </ul>
+            <button id="buyButton" class="btn btn-success" (click)="store.addToOrder(p)">Buy</button>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center mt-5" *ngIf="pagination">
+    <pagination [boundaryLinks]="true"
+                [totalItems]="pagination.totalItems"
+                [itemsPerPage]="pagination.itemsPerPage"
+                [(ngModel)]="pagination.currentPage"
+                (pageChanged)="pageChanged($event)"
+                [maxSize]="productParams.maxSize"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;">
+    </pagination>
+</div>

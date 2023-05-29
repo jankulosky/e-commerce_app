@@ -1,0 +1,30 @@
+﻿<div class="row">
+    <div class="card border bg-light rounded p-1 col-9" *ngIf='product'>
+        <div class="card-header">
+            {{ pageTitle }} : {{ product.title }}
+        </div>
+        <div class="card-body">
+            <img src="/img/{{ product.artId }}.jpg" class="img-fluid product-image" alt="{{ product.artist }}" />
+            <h5>{{ product.category }} - {{ product.size }} </h5>
+            <ul class="products-props">
+                <li><strong>Title:</strong> {{ product.title }}</li>
+                <li><strong>Artist:</strong> {{ product.artist }}</li>
+                <li><strong>Born:</strong> {{ product.artistBirthDate | date }}</li>
+                <li><strong>Died:</strong> {{ product.artistDeathDate | date }}</li>
+                <li><strong>Nationality:</strong> {{ product.artistNationality }}</li>
+                <li><strong>Description:</strong> {{ product.artDescription }}</li>
+                <li><strong>Art ID:</strong> {{ product.artId }}</li>
+                <li><strong>Year:</strong> {{ product.artDating }}</li>
+                <li><strong>Price:</strong> {{ product.price | currency }}</li>
+            </ul>
+            <div class="card-footer">
+                <button class="btn btn-outline-secondary" style="width: 80px" (click)="onBack()"><i class='fa fa-chevron-left'></i>Back</button>
+                <div class="divider"></div>
+                <button class="btn btn-success" (click)="store.addToOrder(product)">Buy</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <cart></cart>
+    </div>
+</div>

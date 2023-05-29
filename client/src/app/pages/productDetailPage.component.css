@@ -1,0 +1,25 @@
+﻿.product-image {
+    border: 1px #ddd solid;
+    box-shadow: rgba(0,0,0,.4) 2px 2px;
+    margin: 2px;
+}
+
+.product-props {
+    font-size: .9rem;
+}
+
+ul.products-props li {
+    list-style-type: none;
+}
+
+.button {
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.divider {
+    width: 5px;
+    height: auto;
+    display: inline-block;
+}

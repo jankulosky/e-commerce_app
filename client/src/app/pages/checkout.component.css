@@ -1,0 +1,9 @@
+﻿.checkout-thumb {
+    max-width: 100px;
+}
+
+.divider {
+    width: 5px;
+    height: auto;
+    display: inline-block;
+}
